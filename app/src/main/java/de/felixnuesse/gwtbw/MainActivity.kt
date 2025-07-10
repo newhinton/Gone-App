@@ -1,8 +1,10 @@
 package de.felixnuesse.gwtbw
 
+import android.content.res.ColorStateList
+import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.util.Log
+import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -35,10 +37,10 @@ class MainActivity : AppCompatActivity() {
         loadComic()
         setComic()
 
-        binding.bNext.setOnClickListener {
-            if(mId<mComic.comics.size-1){
-                mId++
-            }
+
+
+        binding.bFirst.setOnClickListener {
+            mId = 0
             setComic()
         }
 
@@ -49,8 +51,10 @@ class MainActivity : AppCompatActivity() {
             setComic()
         }
 
-        binding.bFirst.setOnClickListener {
-            mId = 0
+        binding.bNext.setOnClickListener {
+            if(mId<mComic.comics.size-1){
+                mId++
+            }
             setComic()
         }
 
@@ -58,7 +62,23 @@ class MainActivity : AppCompatActivity() {
             mId = mComic.comics.size-1
             setComic()
         }
+    }
 
+    private fun updateButtonStates() {
+        binding.bFirst.isEnabled = true
+        binding.bPrev.isEnabled = true
+        binding.bNext.isEnabled = true
+        binding.bLast.isEnabled = true
+
+        if (mId == 0) {
+            binding.bFirst.isEnabled = false
+            binding.bPrev.isEnabled = false
+        }
+
+        if (mId == mComic.comics.size-1) {
+            binding.bNext.isEnabled = false
+            binding.bLast.isEnabled = false
+        }
     }
 
     private fun loadComic() {
@@ -76,5 +96,14 @@ class MainActivity : AppCompatActivity() {
         val comic = mComic.comics[id]
         binding.title.text = comic.title
         binding.image.setImageDrawable(Drawable.createFromStream(assets.open("comics/${comic.img}"), comic.title))
+        updateButtonStates()
+    }
+
+    private fun prepareButtonColors(view: ImageButton) {
+
+        //view.backgroundTintList = ColorStateList(
+       //     arrayOf<IntArray?>(PRESSED_ENABLED_STATE_SET, EMPTY_STATE_SET),
+        //    intArrayOf(Color.GREEN, Color.BLUE)
+       // )
     }
 }
