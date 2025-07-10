@@ -69,6 +69,7 @@
                 android:layout_marginTop="548dp"
                 app:cardBackgroundColor="@color/bg"
                 app:cardCornerRadius="8dp"
+                app:cardUseCompatPadding="true"
                 app:contentPadding="4dp"
                 app:layout_constraintEnd_toEndOf="@+id/image"
                 app:layout_constraintStart_toStartOf="@+id/image"
@@ -87,8 +88,8 @@
                         android:background="@android:color/transparent"
                         android:scaleType="fitXY"
                         android:src="@drawable/first"
-                        app:tint="@drawable/button_states"
-                        app:backgroundTintMode="src_over"/>
+                        app:backgroundTintMode="src_over"
+                        app:tint="@drawable/button_states" />
 
                     <ImageButton
                         android:id="@+id/bPrev"
@@ -97,8 +98,8 @@
                         android:background="@android:color/transparent"
                         android:scaleType="fitXY"
                         android:src="@drawable/prev"
-                        app:tint="@drawable/button_states"
-                        app:backgroundTintMode="src_over"/>
+                        app:backgroundTintMode="src_over"
+                        app:tint="@drawable/button_states" />
 
                     <ImageButton
                         android:id="@+id/bNext"
@@ -107,8 +108,8 @@
                         android:background="@android:color/transparent"
                         android:scaleType="fitXY"
                         android:src="@drawable/next"
-                        app:tint="@drawable/button_states"
-                        app:backgroundTintMode="src_over" />
+                        app:backgroundTintMode="src_over"
+                        app:tint="@drawable/button_states" />
 
                     <ImageButton
                         android:id="@+id/bLast"
@@ -117,8 +118,8 @@
                         android:background="@android:color/transparent"
                         android:scaleType="fitXY"
                         android:src="@drawable/last"
-                        app:tint="@drawable/button_states"
-                        app:backgroundTintMode="src_over" />
+                        app:backgroundTintMode="src_over"
+                        app:tint="@drawable/button_states" />
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
 
