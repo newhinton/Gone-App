@@ -26,6 +26,7 @@ The yellows stole all the screenshots.
 Installation
 ------------
 Download and build this app. There is currently no release. That is because the blue's stole all of them!
+(If i get permission to publish this app with the comics embedded from the comic-author, i might publish releases. Don't count on it for now.)
 
 
 Developing
