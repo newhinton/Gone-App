@@ -1,7 +1,6 @@
 package de.felixnuesse.gwtbw
 
-import android.content.res.ColorStateList
-import android.graphics.Color
+import android.content.SharedPreferences
 import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.widget.ImageButton
@@ -19,6 +18,13 @@ class MainActivity : AppCompatActivity() {
 
     private var mId = 0
     private lateinit var mComic: Comics
+    private lateinit var sharedPreferences: SharedPreferences
+    private lateinit var editor: SharedPreferences.Editor
+
+
+    companion object {
+        private const val LAST_COMIC = "LAST_COMIC"
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,9 +38,12 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        sharedPreferences = getSharedPreferences("UserPreferences", MODE_PRIVATE)
+        editor = sharedPreferences.edit()
 
 
         loadComic()
+        mId = sharedPreferences.getInt(LAST_COMIC, 0)
         setComic()
 
 
@@ -82,9 +91,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadComic() {
-        var metadata = assets.open("metadata.json")
+        val metadata = assets.open("metadata.json")
         // todo: api
-        var comicMedata = String(metadata.readAllBytes(), StandardCharsets.UTF_8);
+        val comicMedata = String(metadata.readAllBytes(), StandardCharsets.UTF_8);
         mComic = Comics.fromJSON(comicMedata)
     }
 
@@ -93,6 +102,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setComic(id: Int) {
+        editor.putInt(LAST_COMIC, id)
+        editor.apply()
         val comic = mComic.comics[id]
         binding.title.text = comic.title
         binding.image.setImageDrawable(Drawable.createFromStream(assets.open("comics/${comic.img}"), comic.title))
