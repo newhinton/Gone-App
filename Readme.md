@@ -20,7 +20,7 @@ An Android app that let's you browse the "Gone with the Blastwave"-Comic on your
 Screenshots
 -----------
 
-The yellows stole all the screenshots. 
+The green's stole all the screenshots. 
 
 
 Installation
